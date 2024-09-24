@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './Header.css'
 const Header = () => {
   return (
-    <>
+    <header className='header'>
     <h1>Food Delivery</h1>
     <nav>
         <ul>
@@ -12,7 +12,7 @@ const Header = () => {
             <li>Cart</li>
         </ul>
     </nav>
-    </>
+    </header>
   )
 }
 
