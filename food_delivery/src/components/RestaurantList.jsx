@@ -19,10 +19,17 @@ const restaurantData = [
   ];
 const RestaurantList = () => {
   return (
-    <restaurantList>
-        this all are restaurants
-    </restaurantList>
-  )
+    <div>
+        {restaurantData.map((restuarant, index) =>(
+            <div key={index} className='rest-card'>
+                <img className='rest-image' src={restuarant.imageUrl} alt={restuarant.name}/>
+                <h2 className='rest-name'>{restuarant.name}</h2>
+                <p className='rest-description'>{restuarant.description}</p>
+                <button className='view-menu-btn'>view menu</button>
+            </div>
+        ))}
+    </div>
+  );
 }
 
 export default RestaurantList
