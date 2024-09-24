@@ -2,9 +2,9 @@ import React from 'react'
 
 const RestaurantList = () => {
   return (
-    <div>
-      
-    </div>
+    <restaurantList>
+        this all are restaurants
+    </restaurantList>
   )
 }
 
