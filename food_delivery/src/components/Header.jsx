@@ -5,11 +5,11 @@ const Header = () => {
     <header className='header'>
     <h1 className='title'>Food Delivery</h1>
     <nav>
-        <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Menu</li>
-            <li>Cart</li>
+        <ul className='nav-list'>
+            <li className='nav-item'><a href='#'>Home</a></li>
+            <li className='nav-item'><a href='#'>About</a></li>
+            <li className='nav-item'><a href='#'>Menu</a></li>
+            <li className='nav-item'><a href='#'>Cart</a></li>
         </ul>
     </nav>
     </header>
