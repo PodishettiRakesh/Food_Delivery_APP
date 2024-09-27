@@ -2,16 +2,24 @@ import React from 'react'
 import './RestaurantList.css'
 
 const restaurantData = [
-    {
-      name: 'Biryani Palace',
-      description: 'Famous for Hyderabadi Biryani with rich flavors and spices.',
-      imageUrl: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg',
-    },
-    {
-      name: 'Paradise Restaurant',
-      description: 'Iconic spot known for its legendary biryani and Mughlai cuisine.',
-      imageUrl: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg',
-    },
+  {
+    name: 'Biryani Palace',
+    description: 'Famous for Hyderabadi Biryani with rich flavors and spices.',
+    imageUrl: 'https://www.example.com/images/biryani-palace.jpg',
+    menu: [
+      { name: 'Chicken Biryani', imageUrl: 'https://via.placeholder.com/150', price: '$12.99' },
+      { name: 'Paneer Biryani', imageUrl: 'https://via.placeholder.com/150', price: '$10.99' },
+    ]
+  },
+  {
+    name: 'Paradise Restaurant',
+    description: 'Iconic spot known for its legendary biryani and Mughlai cuisine.',
+    imageUrl: 'https://www.example.com/images/paradise-restaurant.jpg',
+    menu: [
+      { name: 'Mutton Biryani', imageUrl: 'https://via.placeholder.com/150', price: '$14.99' },
+      { name: 'Hyderabadi Chicken', imageUrl: 'https://via.placeholder.com/150', price: '$13.49' },
+    ]
+  },
     {
       name: 'Shah Ghouse',
       description: 'Popular for authentic Hyderabadi dishes and kebabs.',
