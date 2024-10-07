@@ -1,23 +1,25 @@
 import React from 'react'
 import './RestaurantList.css'
+import { useState } from 'react'
+import Menu from './Menu';
 
 const restaurantData = [
   {
     name: 'Biryani Palace',
     description: 'Famous for Hyderabadi Biryani with rich flavors and spices.',
-    imageUrl: 'https://www.example.com/images/biryani-palace.jpg',
+    imageUrl: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg',
     menu: [
-      { name: 'Chicken Biryani', imageUrl: 'https://via.placeholder.com/150', price: '$12.99' },
-      { name: 'Paneer Biryani', imageUrl: 'https://via.placeholder.com/150', price: '$10.99' },
+      { name: 'Chicken Biryani', imageUrl: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg', price: '$12.99' },
+      { name: 'Paneer Biryani', imageUrl: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg', price: '$10.99' },
     ]
   },
   {
     name: 'Paradise Restaurant',
     description: 'Iconic spot known for its legendary biryani and Mughlai cuisine.',
-    imageUrl: 'https://www.example.com/images/paradise-restaurant.jpg',
+    imageUrl: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg',
     menu: [
-      { name: 'Mutton Biryani', imageUrl: 'https://via.placeholder.com/150', price: '$14.99' },
-      { name: 'Hyderabadi Chicken', imageUrl: 'https://via.placeholder.com/150', price: '$13.49' },
+      { name: 'Mutton Biryani', imageUrl: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg', price: '$14.99' },
+      { name: 'Hyderabadi Chicken', imageUrl: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg', price: '$13.49' },
     ]
   },
     {
@@ -52,19 +54,38 @@ const restaurantData = [
       }
     
   ];
-const RestaurantList = () => {
-  return (
-    <div className='restaurant-list'>
-        {restaurantData.map((restuarant, index) =>(
-            <div key={index} className='restaurant-card'>
-                <img className='restaurant-image' src={restuarant.imageUrl} alt={restuarant.name}/>
-                <h2 className='restaurant-name'>{restuarant.name}</h2>
-                <p className='restaurant-description'>{restuarant.description}</p>
-                <button className='view-menu-btn'>view menu</button>
-            </div>
-        ))}
-    </div>
-  );
-}
 
-export default RestaurantList
+  const RestaurantList = () => {
+    const [selectedMenu, setSelectedMenu] = useState(null); // State for selected restaurant's menu
+  
+    const handleViewMenu = (menu) => {
+      setSelectedMenu(menu); // Set the selected restaurant's menu
+    };
+  
+    return (
+      <div>
+        {selectedMenu ? (
+          <Menu menuData={selectedMenu} />
+        ) : (
+          <div className="restaurant-list">
+            {restaurantData.map((restaurant, index) => (
+              <div key={index} className="restaurant-card">
+                <img
+                  className="restaurant-image"
+                  src={restaurant.imageUrl}
+                  alt={restaurant.name}
+                />
+                <h2 className="restaurant-name">{restaurant.name}</h2>
+                <p className="restaurant-description">{restaurant.description}</p>
+                <button onClick={() => handleViewMenu(restaurant.menu)}>
+                  View Menu
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
+  
+  export default RestaurantList;
