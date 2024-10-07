@@ -2,7 +2,7 @@ import React from 'react'
 // import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import RestaurantList from './components/RestaurantList'
+// import RestaurantList from './components/RestaurantList'
 import Login from './components/login_register/Login'
 
 const App = () => {
@@ -10,7 +10,6 @@ const App = () => {
     <div className='App'>
       <Header/>
       <Login/>
-      <RestaurantList />
       <Footer/>
       
     </div>
