@@ -5,6 +5,7 @@ const Menu = ({ menuData }) => {
     <div className="menu-list">
       {menuData.map((item, index) => (
         <div key={index} className="menu-item">
+          {console.log(index)}
           <img
             className="menu-image"
             src={item.imageUrl}
