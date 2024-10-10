@@ -8,7 +8,12 @@ const Menu = ({ menuData }) => {
   const [cartItems, setCartItems]=useState([]);
   const [viewCart, setViewCart] = useState(false);
 
-  const 
+  // Function to handle adding items to the cart
+  const handleAddToCart = (item) => {
+    setCartItems((prevItems) => [...prevItems, item]);
+  };
+
+  
   return (
     <div className="menu-list">
       {menuData.map((item, index) => (
