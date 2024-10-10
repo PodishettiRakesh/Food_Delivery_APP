@@ -1,15 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './Menu.css'
 import Cart from './Cart/Cart';
 
-const cartItems=[
-  { name: 'Chicken Biryani', price: '$12.99' },
-  { name: 'Paneer Biryani', price: '$10.99' },
-  { name: 'Mutton Biryani', price: '$14.99' }
-];
-
 
 const Menu = ({ menuData }) => {
+
+  const [cartItems, setCartItems]=useState([]);
+  const [viewCart, setViewCart] = useState(false);
+
+  const 
   return (
     <div className="menu-list">
       {menuData.map((item, index) => (
