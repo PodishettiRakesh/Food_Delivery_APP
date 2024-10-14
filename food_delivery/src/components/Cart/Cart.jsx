@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useCart } from './CartContext'; // Import useCart hook
+import './Cart.css'
+
 
 const Cart = () => {
-  const location = useLocation();
-  const { cartItems = [] } = location.state || {}; // Get cartItems from location's state
+  const { cartItems } = useCart(); // Get cartItems from context
 
   return (
     <div className="cart-container">

@@ -2,19 +2,17 @@ import React,{useState} from 'react';
 import './Menu.css'
 // import { useLocation } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useCart } from './Cart/CartContext'; // Import useCart hook
 
 
 const Menu = () => {
   const location = useLocation();
   const { menuData } = location.state; // Get menuData from location's state
-  const navigate = useNavigate();
-
-  const [cartItems, setCartItems]=useState([]);
-  // const [viewCart, setViewCart] = useState(false);
+  const { addToCart } = useCart(); // Use the addToCart function from context
 
   // Function to handle adding items to the cart
   const handleAddToCart = (item) => {
-    setCartItems((prevItems) => [...prevItems, item]);
+    addToCart(item);
   };
 
   return (
