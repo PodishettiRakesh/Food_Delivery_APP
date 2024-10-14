@@ -1,33 +1,24 @@
 import React,{useState} from 'react';
 import './Menu.css'
-import { useLocation } from 'react-router-dom';
-import Cart from './Cart/Cart';
+// import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const Menu = () => {
-
   const location = useLocation();
   const { menuData } = location.state; // Get menuData from location's state
+  const navigate = useNavigate();
 
   const [cartItems, setCartItems]=useState([]);
-  const [viewCart, setViewCart] = useState(false);
+  // const [viewCart, setViewCart] = useState(false);
 
   // Function to handle adding items to the cart
   const handleAddToCart = (item) => {
     setCartItems((prevItems) => [...prevItems, item]);
   };
 
-   // Function to toggle between the cart and menu view
-   const toggleCartView = () => {
-    setViewCart(!viewCart);
-  };
-
   return (
     <div>
-      {/* If viewCart is true, show Cart; otherwise, show Menu */}
-      {viewCart ? (
-        <Cart cartItems={cartItems} />
-      ) : (
         <div className="menu-list">
           {menuData.map((item, index) => (
             <div key={index} className="menu-item">
@@ -47,11 +38,6 @@ const Menu = () => {
             </div>
           ))}
         </div>
-      )}
-      {/* Toggle between Cart and Menu button */}
-      <button onClick={toggleCartView} className="view-cart-button">
-        {viewCart ? 'Go to Menu' : `View Cart (${cartItems.length})`}
-      </button>
     </div>
   );
 };

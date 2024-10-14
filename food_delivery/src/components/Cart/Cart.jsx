@@ -1,8 +1,10 @@
-import React from 'react';
-import './Cart.css';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
+const Cart = () => {
+  const location = useLocation();
+  const { cartItems = [] } = location.state || {}; // Get cartItems from location's state
 
-const Cart = ({ cartItems=[] }) => {
   return (
     <div className="cart-container">
       <h2>Your Cart</h2>
