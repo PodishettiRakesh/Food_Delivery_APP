@@ -17,11 +17,6 @@ const Menu = () => {
     addToCart(item);
     
     setNotification(`Added ${item.name} to cart!`);
-
-     // Hide notification after 2 seconds
-    setTimeout(() => {
-      setNotification('');
-    }, 2000);
   };
 
   return (
