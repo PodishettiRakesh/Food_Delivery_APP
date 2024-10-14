@@ -2,7 +2,7 @@ import React from 'react';
 import './Cart.css';
 
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems=[] }) => {
   return (
     <div className="cart-container">
       <h2>Your Cart</h2>

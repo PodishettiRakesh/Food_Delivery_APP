@@ -3,7 +3,7 @@ import './Menu.css'
 import Cart from './Cart/Cart';
 
 
-const Menu = ({ menuData }) => {
+const Menu = ({ menuData=[] }) => {
 
   const [cartItems, setCartItems]=useState([]);
   const [viewCart, setViewCart] = useState(false);

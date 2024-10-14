@@ -1,7 +1,10 @@
 import React from 'react'
 import './RestaurantList.css'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Menu from './Menu';
+
+
 
 const restaurantData = [
   {
@@ -103,37 +106,25 @@ const restaurantData = [
 ];
 
 
-  const RestaurantList = () => {
-    const [selectedMenu, setSelectedMenu] = useState(null); // State for selected restaurant's menu
-  
-    const handleViewMenu = (menu) => {
-      setSelectedMenu(menu); // Set the selected restaurant's menu
-    };
-  
-    return (
-      <div>
-        {selectedMenu ? (
-          <Menu menuData={selectedMenu} />
-        ) : (
-          <div className="restaurant-list">
-            {restaurantData.map((restaurant, index) => (
-              <div key={index} className="restaurant-card">
-                <img
-                  className="restaurant-image"
-                  src={restaurant.imageUrl}
-                  alt={restaurant.name}
-                />
-                <h2 className="restaurant-name">{restaurant.name}</h2>
-                <p className="restaurant-description">{restaurant.description}</p>
-                <button onClick={() => handleViewMenu(restaurant.menu)}>
-                  View Menu
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    );
+const RestaurantList = () => {
+  const navigate = useNavigate();
+
+  const handleViewMenu = (menu) => {
+    navigate('/menu', { state: { menuData: menu } }); // Navigate to menu with menuData passed via state
   };
+
+  return (
+    <div className="restaurant-list">
+      {restaurantData.map((restaurant, index) => (
+        <div key={index} className="restaurant-card">
+          <img className="restaurant-image" src={restaurant.imageUrl} alt={restaurant.name} />
+          <h2 className="restaurant-name">{restaurant.name}</h2>
+          <p className="restaurant-description">{restaurant.description}</p>
+          <button onClick={() => handleViewMenu(restaurant.menu)}>View Menu</button>
+        </div>
+      ))}
+    </div>
+  );
+};
   
   export default RestaurantList;
