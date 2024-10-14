@@ -109,9 +109,10 @@ const restaurantData = [
 const RestaurantList = () => {
   const navigate = useNavigate();
 
-  const handleViewMenu = (menu) => {
-    navigate('/menu', { state: { menuData: menu } }); // Navigate to menu with menuData passed via state
+  const handleViewMenu = (restaurantName) => {
+    navigate(`/menu/${restaurantName}`, { state: { menuData: restaurantName.menu } }); // Pass restaurant name in the URL and the menu in state
   };
+  
 
   return (
     <div className="restaurant-list">
