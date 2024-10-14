@@ -3,20 +3,35 @@ import './Menu.css'
 // import { useLocation } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from './Cart/CartContext'; // Import useCart hook
+import Notification from './Cart/Notification';
 
 
 const Menu = () => {
   const location = useLocation();
   const { menuData } = location.state; // Get menuData from location's state
   const { addToCart } = useCart(); // Use the addToCart function from context
+  const [notification, setNotification] = useState('');
 
   // Function to handle adding items to the cart
   const handleAddToCart = (item) => {
     addToCart(item);
+    
+    setNotification(`Added ${item.name} to cart!`);
+
+     // Hide notification after 2 seconds
+    setTimeout(() => {
+      setNotification('');
+    }, 2000);
   };
 
   return (
     <div>
+      {notification && (
+        <Notification
+          message={notification}
+          onClose={() => setNotification('')} // Allow closing the notification
+        />
+      )}
         <div className="menu-list">
           {menuData.map((item, index) => (
             <div key={index} className="menu-item">
