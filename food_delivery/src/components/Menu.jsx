@@ -1,9 +1,13 @@
 import React,{useState} from 'react';
 import './Menu.css'
+import { useLocation } from 'react-router-dom';
 import Cart from './Cart/Cart';
 
 
-const Menu = ({ menuData=[] }) => {
+const Menu = () => {
+
+  const location = useLocation();
+  const { menuData } = location.state; // Get menuData from location's state
 
   const [cartItems, setCartItems]=useState([]);
   const [viewCart, setViewCart] = useState(false);

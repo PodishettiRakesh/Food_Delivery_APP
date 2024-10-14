@@ -109,9 +109,10 @@ const restaurantData = [
 const RestaurantList = () => {
   const navigate = useNavigate();
 
-  const handleViewMenu = (restaurantName) => {
-    navigate(`/menu/${restaurantName}`, { state: { menuData: restaurantName.menu } }); // Pass restaurant name in the URL and the menu in state
+  const handleViewMenu = (restaurant) => {
+    navigate(`/menu/${restaurant.name}`, { state: { menuData: restaurant.menu } }); // Pass restaurant name in the URL and the menu in state
   };
+  
   
 
   return (
@@ -121,7 +122,7 @@ const RestaurantList = () => {
           <img className="restaurant-image" src={restaurant.imageUrl} alt={restaurant.name} />
           <h2 className="restaurant-name">{restaurant.name}</h2>
           <p className="restaurant-description">{restaurant.description}</p>
-          <button onClick={() => handleViewMenu(restaurant.menu)}>View Menu</button>
+          <button onClick={() => handleViewMenu(restaurant)}>View Menu</button>
         </div>
       ))}
     </div>
