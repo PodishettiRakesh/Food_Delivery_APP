@@ -7,6 +7,14 @@ const Cart = () => {
   const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity } = useCart(); // Get cart functions
   const navigate = useNavigate(); // Initialize navigate
 
+  // Calculate total amount
+  const totalAmount = cartItems.reduce((total, item) => {
+    // Extract numerical part of price (remove any non-numeric characters)
+    const price = parseFloat(item.price.replace(/[^0-9.-]+/g, "")) || 0;
+    const quantity = item.quantity || 1; // Ensure quantity is at least 1
+    return total + price * quantity;
+  }, 0);
+
   return (
     <div className="cart-container">
       <h2>Your Cart</h2>
@@ -45,6 +53,10 @@ const Cart = () => {
               </button>
             </div>
           ))}
+          {/* Display total amount */}
+          <div className="cart-total">
+            <h3>Total Amount: ${totalAmount.toFixed(2)}</h3> {/* Total amount with 2 decimal places */}
+          </div>
         </div>
       )}
       {/* Add a button to proceed to checkout */}
