@@ -24,9 +24,21 @@ export const CartProvider = ({ children }) => {
         });
       };
 
-  const removeFromCart = (item) => {
-    setCartItems((prevItems) => prevItems.filter((cartItem) => cartItem.name !== item.name));
-  };
+      const removeFromCart = (id) => {
+        setCartItems((prevItems) => {
+          const item = prevItems.find((cartItem) => cartItem.id === id);
+          if (item.quantity === 1) {
+            return prevItems.filter((cartItem) => cartItem.id !== id);
+          } else {
+            return prevItems.map((cartItem) =>
+              cartItem.id === id
+                ? { ...cartItem, quantity: cartItem.quantity - 1 }
+                : cartItem
+            );
+          }
+        });
+      };
+    
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
