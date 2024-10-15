@@ -9,6 +9,7 @@ import Cart from './components/Cart/Cart';
 import { CartProvider } from './components/Cart/CartContext';
 // import Login from './components/login_register/Login'
 // import Register from './components/login_register/Register'
+import Checkout from './components/Checkout/Checkout';
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/" element={<RestaurantList />} />
           <Route path="/menu/:restaurantName" element={<Menu />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer/>
       </Router>
