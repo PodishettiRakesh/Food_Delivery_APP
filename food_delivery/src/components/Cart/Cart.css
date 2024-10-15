@@ -62,3 +62,51 @@
     background-color: #c82333;
   }
   
+    
+/* Quantity controls styling */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+.quantity-button:hover {
+  background-color: #0056b3;
+}
+
+.quantity-display {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+/* Proceed to Checkout button styling */
+.checkout-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+  background-color: #218838;
+}
