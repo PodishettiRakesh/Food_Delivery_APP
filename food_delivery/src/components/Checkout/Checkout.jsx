@@ -1,6 +1,6 @@
 // src/components/Checkout.jsx
 import React, { useState } from 'react';
-// import './Checkout.css'; // Create this file for custom styles
+import './Checkout.css'; // Create this file for custom styles
 
 const Checkout = () => {
   const [formData, setFormData] = useState({
