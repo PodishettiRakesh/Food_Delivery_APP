@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { cartItems, removeFromCart } = useCart(); // Get cartItems from context
+  const navigate = useNavigate(); // Initialize navigate
 
   return (
     <div className="cart-container">
