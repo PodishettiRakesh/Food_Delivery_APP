@@ -107,24 +107,98 @@ const restaurantData = [
 
 
 const RestaurantList = () => {
+  const [restaurants, setRestaurants] = useState(restaurantData); // State for restaurants
+  const [newRestaurant, setNewRestaurant] = useState({ name: '', description: '', imageUrl: '' });
+  const [isEditing, setIsEditing] = useState(null); // Track which restaurant is being edited
   const navigate = useNavigate();
 
   const handleViewMenu = (restaurant) => {
     navigate(`/menu/${restaurant.name}`, { state: { menuData: restaurant.menu } }); // Pass restaurant name in the URL and the menu in state
   };
+
+  // Handle editing a restaurant
+  const handleEdit = (index) => {
+    setIsEditing(index);
+  };
+
+  // Save changes after editing
+  const handleSave = (index) => {
+    setIsEditing(null);
+  };
+
+  // Handle input change when editing
+  const handleInputChange = (index, field, value) => {
+    const updatedRestaurants = [...restaurants];
+    updatedRestaurants[index][field] = value;
+    setRestaurants(updatedRestaurants);
+  };
+
+  // Handle adding a new restaurant
+  const handleAddRestaurant = () => {
+    setRestaurants([...restaurants, newRestaurant]);
+    setNewRestaurant({ name: '', description: '', imageUrl: '' });
+  };
+
   
   
 
   return (
     <div className="restaurant-list">
-      {restaurantData.map((restaurant, index) => (
+      {restaurants.map((restaurant, index) => (
         <div key={index} className="restaurant-card">
-          <img className="restaurant-image" src={restaurant.imageUrl} alt={restaurant.name} />
-          <h2 className="restaurant-name">{restaurant.name}</h2>
-          <p className="restaurant-description">{restaurant.description}</p>
-          <button onClick={() => handleViewMenu(restaurant)}>View Menu</button>
+          {isEditing === index ? (
+            <>
+              <input
+                type="text"
+                value={restaurant.name}
+                onChange={(e) => handleInputChange(index, 'name', e.target.value)}
+              />
+              <input
+                type="text"
+                value={restaurant.description}
+                onChange={(e) => handleInputChange(index, 'description', e.target.value)}
+              />
+              <input
+                type="text"
+                value={restaurant.imageUrl}
+                onChange={(e) => handleInputChange(index, 'imageUrl', e.target.value)}
+              />
+              <button onClick={() => handleSave(index)}>Save</button>
+            </>
+          ) : (
+            <>
+              <img className="restaurant-image" src={restaurant.imageUrl} alt={restaurant.name} />
+              <h2 className="restaurant-name">{restaurant.name}</h2>
+              <p className="restaurant-description">{restaurant.description}</p>
+              <button onClick={() => handleViewMenu(restaurant)}>View Menu</button>
+              <button onClick={() => handleEdit(index)}>Edit</button>
+            </>
+          )}
         </div>
       ))}
+
+      <div className="add-restaurant">
+        <h3>Add New Restaurant</h3>
+        <input
+          type="text"
+          placeholder="Restaurant Name"
+          value={newRestaurant.name}
+          onChange={(e) => setNewRestaurant({ ...newRestaurant, name: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Description"
+          value={newRestaurant.description}
+          onChange={(e) => setNewRestaurant({ ...newRestaurant, description: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={newRestaurant.imageUrl}
+          onChange={(e) => setNewRestaurant({ ...newRestaurant, imageUrl: e.target.value })}
+        />
+        <button onClick={handleAddRestaurant}>Add Restaurant</button>
+      </div>
     </div>
   );
 };
