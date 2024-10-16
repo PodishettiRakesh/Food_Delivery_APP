@@ -48,3 +48,22 @@
   .view-menu-button:hover {
     background-color: #0056b3;
   }
+
+  button.add-restaurant-button {
+    margin-top: 20px;
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  button.add-restaurant-button:hover {
+    background-color: #0b7dda;
+  }
+  
+  /* Style for the 'Save' button */
+  button.save-button {
+    background-color: #FFA500;
+  }
+  
+  button.save-button:hover {
+    background-color: #ff8c00;
+  }

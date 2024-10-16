@@ -68,3 +68,30 @@
     }
   }
   
+
+/* Submit button for Add New Menu Item form */
+.add-menu-item-form button {
+  background-color: #28a745; /* Green background */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; /* Full width button */
+}
+
+/* Submit button hover effect */
+.add-menu-item-form button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Optional: Add some responsiveness */
+@media (max-width: 400px) {
+  .menu-list {
+    justify-content: center; /* Center menu items on smaller screens */
+  }
+  .menu-item {
+    width: 90%; /* Make items take up most of the screen */
+  }
+}
