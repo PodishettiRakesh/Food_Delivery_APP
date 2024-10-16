@@ -38,6 +38,7 @@ const Menu = () => {
   // Handle adding a new menu item
   const handleAddMenuItem = () => {
     setMenu([...menu, newItem]);
+    setShowAddMenuItemForm(false); // Hide form after submission
     setNewItem({ name: '', imageUrl: '', price: '' });
   };
 
@@ -84,30 +85,35 @@ const Menu = () => {
         ))}
       </div>
 
-      <div className="add-menu-item">
-        <h3>Add New Menu Item</h3>
-        <input
-          type="text"
-          placeholder="Item Name"
-          value={newItem.name}
-          onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={newItem.imageUrl}
-          onChange={(e) => setNewItem({ ...newItem, imageUrl: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Price"
-          value={newItem.price}
-          onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
-        />
-        <button onClick={handleAddMenuItem}>Add Menu Item</button>
-      </div>
+      <button onClick={() => setShowAddMenuItemForm(!showAddMenuItemForm)}>
+        Add New Menu Item
+      </button>
+
+      {showAddMenuItemForm && (
+        <div className="add-menu-item-form">
+          <h3>Add New Menu Item</h3>
+          <input
+            type="text"
+            placeholder="Item Name"
+            value={newItem.name}
+            onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Image URL"
+            value={newItem.imageUrl}
+            onChange={(e) => setNewItem({ ...newItem, imageUrl: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Price"
+            value={newItem.price}
+            onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+          />
+          <button onClick={handleAddMenuItem}>Submit</button>
+        </div>
+      )}
     </div>
   );
 };
-
 export default Menu;
