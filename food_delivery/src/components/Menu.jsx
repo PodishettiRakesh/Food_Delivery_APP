@@ -14,6 +14,7 @@ const Menu = () => {
   const [menu, setMenu] = useState(menuData); // State to manage menu data
   const [isEditing, setIsEditing] = useState(null); // Track which menu item is being edited
   const [newItem, setNewItem] = useState({ name: '', imageUrl: '', price: '' });
+  const [showAddMenuItemForm, setShowAddMenuItemForm] = useState(false);
 
   const handleEdit = (index) => {
     setIsEditing(index);
