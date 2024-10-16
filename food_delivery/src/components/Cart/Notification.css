@@ -1,18 +1,31 @@
+/* Notification container */
 .notification {
-    position: fixed;
-    bottom: 20px; /* Position the notification towards the bottom */
-    right: 20px; /* Position it to the right */
-    background-color: #f8f9fa; /* Same background color as menu items */
-    border: 1px solid #28a745; /* Green border to match add-to-cart button */
-    border-radius: 8px;
-    padding: 10px 15px; /* Add some padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Ensure it appears above other elements */
-    transition: opacity 0.5s ease-in-out; /* Fade effect */
-    opacity: 0; /* Initially hidden */
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem;
+  z-index: 9999; /* Ensure it appears above other elements */
+  animation: fadeInOut 4s ease forwards;
+}
+
+/* Animation for fade in and out */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
   }
-  
-  .notification.show {
-    opacity: 1; /* Fully visible when the 'show' class is added */
+  10%, 90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
-  
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
