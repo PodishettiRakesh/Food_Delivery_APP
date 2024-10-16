@@ -107,6 +107,7 @@ const restaurantData = [
 
 
 const RestaurantList = () => {
+  const [showAddRestaurantForm, setShowAddRestaurantForm] = useState(false);
   const [restaurants, setRestaurants] = useState(restaurantData); // State for restaurants
   const [newRestaurant, setNewRestaurant] = useState({ name: '', description: '', imageUrl: '' });
   const [isEditing, setIsEditing] = useState(null); // Track which restaurant is being edited
@@ -136,6 +137,7 @@ const RestaurantList = () => {
   // Handle adding a new restaurant
   const handleAddRestaurant = () => {
     setRestaurants([...restaurants, newRestaurant]);
+    setShowAddRestaurantForm(false); // Hide form after submission
     setNewRestaurant({ name: '', description: '', imageUrl: '' });
   };
 
@@ -177,30 +179,38 @@ const RestaurantList = () => {
         </div>
       ))}
 
-      <div className="add-restaurant">
-        <h3>Add New Restaurant</h3>
-        <input
-          type="text"
-          placeholder="Restaurant Name"
-          value={newRestaurant.name}
-          onChange={(e) => setNewRestaurant({ ...newRestaurant, name: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={newRestaurant.description}
-          onChange={(e) => setNewRestaurant({ ...newRestaurant, description: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={newRestaurant.imageUrl}
-          onChange={(e) => setNewRestaurant({ ...newRestaurant, imageUrl: e.target.value })}
-        />
-        <button onClick={handleAddRestaurant}>Add Restaurant</button>
-      </div>
+<button onClick={() => setShowAddRestaurantForm(!showAddRestaurantForm)}>
+        Add New Restaurant
+      </button>
+
+      {showAddRestaurantForm && (
+        <div className="add-restaurant-form">
+          <h3>Add New Restaurant</h3>
+          <input
+            type="text"
+            placeholder="Restaurant Name"
+            value={newRestaurant.name}
+            onChange={(e) => setNewRestaurant({ ...newRestaurant, name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Description"
+            value={newRestaurant.description}
+            onChange={(e) => setNewRestaurant({ ...newRestaurant, description: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Image URL"
+            value={newRestaurant.imageUrl}
+            onChange={(e) => setNewRestaurant({ ...newRestaurant, imageUrl: e.target.value })}
+          />
+          <button onClick={handleAddRestaurant}>Submit</button>
+        </div>
+      )}
     </div>
   );
 };
+
+
   
   export default RestaurantList;
