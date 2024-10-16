@@ -68,6 +68,28 @@
     }
   }
   
+  /* Styling for Add New Menu Item form */
+.add-menu-item-form {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto; /* Centers the form horizontally */
+  max-width: 400px; /* Restricts the form width */
+  width: 100%; /* Ensures form adapts to smaller screens */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center form content */
+}
+
+/* Input fields inside the form */
+.add-menu-item-form input {
+  width: 90%; /* Slightly narrower input fields */
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
 /* Submit button for Add New Menu Item form */
 .add-menu-item-form button {
@@ -78,20 +100,10 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 100%; /* Full width button */
+  width: 90%; /* Matches the input fields */
 }
 
 /* Submit button hover effect */
 .add-menu-item-form button:hover {
   background-color: #218838; /* Darker green on hover */
-}
-
-/* Optional: Add some responsiveness */
-@media (max-width: 400px) {
-  .menu-list {
-    justify-content: center; /* Center menu items on smaller screens */
-  }
-  .menu-item {
-    width: 90%; /* Make items take up most of the screen */
-  }
 }
