@@ -10,6 +10,7 @@ import { CartProvider } from './components/Cart/CartContext';
 // import Login from './components/login_register/Login'
 // import Register from './components/login_register/Register'
 import Checkout from './components/Checkout/Checkout';
+import About from './components/header_Footer_Components/About';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/menu/:restaurantName" element={<Menu />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/about" element={<About />}/>
         </Routes>
         <Footer/>
       </Router>
