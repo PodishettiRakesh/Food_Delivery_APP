@@ -11,6 +11,9 @@ const Menu = () => {
   const { menuData } = location.state; // Get menuData from location's state
   const { addToCart } = useCart(); // Use the addToCart function from context
   const [notification, setNotification] = useState('');
+  const [menu, setMenu] = useState(menuData); // State to manage menu data
+  const [isEditing, setIsEditing] = useState(null); // Track which menu item is being edited
+  const [newItem, setNewItem] = useState({ name: '', imageUrl: '', price: '' });
 
   // Function to handle adding items to the cart
   const handleAddToCart = (item) => {
