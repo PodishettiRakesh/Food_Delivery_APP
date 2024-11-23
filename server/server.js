@@ -1,11 +1,13 @@
 const express = require('express');
 const connectDB = require('./config/db');
+require('dotenv').config();
+
+connectDB();
 
 
 const app = express();
 const PORT = 5000;
 
-connectDB();
 
 app.get('/', (req, res)=>{
     res.send("server running succesfully");
