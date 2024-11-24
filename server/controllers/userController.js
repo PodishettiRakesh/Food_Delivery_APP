@@ -1,4 +1,6 @@
 
+const bcrypt = require('bcryptjs');
+const User = require('../models/User'); // Import the User model
 // Register Controller
 const registerUser = async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
@@ -36,4 +38,4 @@ const registerUser = async (req, res) => {
     }
 };
 
-module.export = {registerUser}
+module.exports = {registerUser};
