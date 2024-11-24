@@ -2,7 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 require('dotenv').config();
 
-const userRoutes=require('./routes/userRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 connectDB();
 
@@ -14,7 +14,7 @@ const PORT = 5000;
 app.get('/', (req, res)=>{
     res.send("server running succesfully");
 })
-
+console.log(userRoutes);
 app.use('/api/users', userRoutes);
 
 // Start the server
