@@ -3,19 +3,22 @@ const connectDB = require('./config/db');
 require('dotenv').config();
 const bodyParser = require('body-parser');
 
+
+
 const userRoutes = require('./routes/userRoutes');
 
 connectDB();
 
 
 const app = express();
+app.use(express.json());
 const PORT = 5000;
 
 
 app.get('/', (req, res)=>{
     res.send("server running succesfully");
 })
-console.log(userRoutes);
+// console.log(userRoutes);
 app.use('/api/users', userRoutes);
 
 // Start the server
