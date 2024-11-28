@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User'); // Import the User model
 // Register Controller
 const registerUser = async (req, res) => {
-    console.log(req);
+    // console.log(req);
     const { username, email, password, confirmPassword } = req.body;
 
     // Check if passwords match
