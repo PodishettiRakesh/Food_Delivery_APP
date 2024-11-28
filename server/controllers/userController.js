@@ -1,6 +1,7 @@
 
 const bcrypt = require('bcryptjs');
 const User = require('../models/User'); // Import the User model
+const jwt = require('jsonwebtoken');
 // Register Controller
 
 
@@ -58,7 +59,7 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    
+
     // Generate JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: '1h', // Token expiration time
