@@ -31,4 +31,34 @@ const addMenuToRestaurant = async (req, res) => {
   };
 
 
-module.exports = {addMenuToRestaurant};
+
+// Get the menu of a specific restaurant
+const getMenuByRestaurantId = async (req, res) => {
+    try {
+        const { restaurantId } = req.params; // Get restaurantId from the URL
+        
+        // Check if the restaurant exists
+        const restaurant = await Restaurant.findById(restaurantId);
+        if (!restaurant) {
+            return res.status(404).json({ error: 'Restaurant not found' });
+        }
+        
+        // Fetch all menu items for the specific restaurant
+        const menuItems = await Menu.find({ restaurantId });
+        
+        // Check if menu items exist for the restaurant
+        if (menuItems.length === 0) {
+            return res.status(404).json({ message: 'No menu items found for this restaurant' });
+        }
+        
+        // Return the list of menu items
+        res.status(200).json({ menuItems });
+    } catch (error) {
+        console.error('Error fetching menu items:', error);
+        res.status(500).json({ error: 'Failed to fetch menu items' });
+    }
+};
+
+
+
+module.exports = {addMenuToRestaurant, getMenuByRestaurantId};
