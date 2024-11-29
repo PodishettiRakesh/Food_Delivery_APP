@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const userRoutes = require('./routes/userRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
+const menuRoutes = require('./routes/menuRoutes');
 connectDB();
 
 
@@ -22,6 +23,10 @@ app.get('/', (req, res)=>{
 // console.log(userRoutes);
 app.use('/api/users', userRoutes);
 app.use('/restaurants', restaurantRoutes);
+
+// Menu routes
+app.use('/restaurants', menuRoutes);
+
 
 // Start the server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
