@@ -6,10 +6,15 @@ const Menu = require('../models/MenuSchema');
 const addMenuToRestaurant = async (req, res) => {
     try {
       const { restaurantId } = req.params;
+    //   console.log("----------------------");
+    //   console.log(restaurantId);
+    //   console.log("----------------------")
       const { name, imageUrl, price } = req.body;
+      
   
       // Create a new menu item
-      const menuItem = new Menu({ name, imageUrl, price, restaurant: restaurantId });
+      const menuItem = new Menu({name, imageUrl, price, restaurantId: restaurantId});
+    //   console.log(menuItem,"**************");
   
       // Save the menu item
       await menuItem.save();
