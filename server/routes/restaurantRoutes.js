@@ -8,4 +8,7 @@ router.get('/', getAllRestaurants);
 // Route to add a new restaurant
 router.post('/', addRestaurant);
 
+// Route to fetch a restaurant by ID
+router.get('/:id', getRestaurantById);
+
 module.exports = router;

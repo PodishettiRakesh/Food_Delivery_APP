@@ -36,4 +36,4 @@ const getRestaurantById = async (req, res) => {
     }
   };
 
-  module.exports = {getAllRestaurants, addRestaurant};
+  module.exports = {getAllRestaurants, addRestaurant, getRestaurantById};
