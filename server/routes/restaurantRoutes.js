@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getAllRestaurants, addRestaurant} = require('../controllers/restaurantController');
+const {getAllRestaurants, addRestaurant, getRestaurantById} = require('../controllers/restaurantController');
 
 // Route to fetch all restaurants
 router.get('/', getAllRestaurants);
