@@ -24,7 +24,7 @@ const Login = () => {
       // Store token in localStorage or handle success
       localStorage.setItem('token', response.data.token);
       setSuccessMessage('Login successful!');
-      navigate('/restaurant');
+      navigate('/restaurants');
     } catch (error) {
       // Handle errors (e.g., invalid credentials, server issues)
       if (error.response) {
