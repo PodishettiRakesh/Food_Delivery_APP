@@ -8,14 +8,42 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logic for registration, such as form validation and API call
-    if (password === confirmPassword) {
-      console.log('Registration successful');
-    } else {
-      console.log('Passwords do not match');
+    setErrorMessage(''); // Clear any previous error messages
+    setSuccessMessage(''); // Clear any previous success messages
+
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
+      return;
+    }
+
+    try {
+      // Make POST request to the registration endpoint
+      const response = await axios.post('http://localhost:5000/api/users/register', {
+        username,
+        email,
+        password,
+        confirmPassword,
+      });
+
+      // Handle successful registration
+      setSuccessMessage('Registration successful! Redirecting to login...');
+      setTimeout(() => {
+        navigate('/login'); // Redirect to login page after success
+      }, 2000);
+    } catch (error) {
+      // Handle errors
+      if (error.response) {
+        setErrorMessage(error.response.data.message); // Show server-provided error message
+      } else {
+        setErrorMessage('Something went wrong. Please try again.');
+      }
     }
   };
 
