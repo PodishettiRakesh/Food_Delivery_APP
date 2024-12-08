@@ -35,7 +35,7 @@ const Register = () => {
       // Handle successful registration
       setSuccessMessage('Registration successful! Redirecting to login...');
       setTimeout(() => {
-        navigate('/login'); // Redirect to login page after success
+        navigate('/'); // Redirect to login page after success
       }, 2000);
     } catch (error) {
       // Handle errors
