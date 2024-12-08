@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios'; // Import axios for HTTP requests
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState(''); // State to store email input
@@ -9,6 +9,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(''); // State for error messages
   const [successMessage, setSuccessMessage] = useState(''); // State for success messages
 
+  const navigate = useNavigate(); // Initialize useNavigate
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page refresh
@@ -23,7 +24,7 @@ const Login = () => {
       // Store token in localStorage or handle success
       localStorage.setItem('token', response.data.token);
       setSuccessMessage('Login successful!');
-      // navigate('/restaurant')
+      navigate('/restaurant');
     } catch (error) {
       // Handle errors (e.g., invalid credentials, server issues)
       if (error.response) {
