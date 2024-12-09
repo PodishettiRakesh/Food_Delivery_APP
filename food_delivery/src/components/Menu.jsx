@@ -1,34 +1,41 @@
-import React,{useState} from 'react';
-import './Menu.css'
-// import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import './Menu.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from './Cart/CartContext'; // Import useCart hook
 import Notification from './Cart/Notification';
-
+import axios from 'axios';
 
 const Menu = () => {
   const location = useLocation();
-  const { menuData } = location.state; // Get menuData from location's state
+  const navigate = useNavigate();
   const { addToCart } = useCart(); // Use the addToCart function from context
+  const restaurantId = location.state?.restaurantId; // Get restaurantId from location's state
+  console.log(restaurantId,"-------------------");
+
+  const [menu, setMenu] = useState([]); // State to manage menu data
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [notification, setNotification] = useState('');
-  const [menu, setMenu] = useState(menuData); // State to manage menu data
   const [isEditing, setIsEditing] = useState(null); // Track which menu item is being edited
   const [newItem, setNewItem] = useState({ name: '', imageUrl: '', price: '' });
   const [showAddMenuItemForm, setShowAddMenuItemForm] = useState(false);
 
-  const handleEdit = (index) => {
-    setIsEditing(index);
-  };
+  // Fetch menu items on component mount
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/restaurants/${restaurantId}/menu`);
+        setMenu(response.data.menuItems);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching menu:', err);
+        setError('Failed to load menu');
+        setLoading(false);
+      }
+    };
 
-  const handleSave = (index) => {
-    setIsEditing(null);
-  };
-
-  const handleInputChange = (index, field, value) => {
-    const updatedMenu = [...menu];
-    updatedMenu[index][field] = value;
-    setMenu(updatedMenu);
-  };
+    fetchMenu();
+  }, [restaurantId]);
 
   const handleAddToCart = (item) => {
     addToCart(item);
@@ -36,11 +43,20 @@ const Menu = () => {
   };
 
   // Handle adding a new menu item
-  const handleAddMenuItem = () => {
-    setMenu([...menu, newItem]);
-    setShowAddMenuItemForm(false); // Hide form after submission
-    setNewItem({ name: '', imageUrl: '', price: '' });
+  const handleAddMenuItem = async () => {
+    try {
+      const response = await axios.post(`http://localhost:5000/restaurants/${restaurantId}/menu`, newItem);
+      setMenu([...menu, response.data.menuItem]); // Update state with the new menu item
+      setShowAddMenuItemForm(false); // Hide form after submission
+      setNewItem({ name: '', imageUrl: '', price: '' });
+    } catch (err) {
+      console.error('Error adding menu item:', err);
+      setError('Failed to add menu item');
+    }
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div>
@@ -58,19 +74,31 @@ const Menu = () => {
                 <input
                   type="text"
                   value={item.name}
-                  onChange={(e) => handleInputChange(index, 'name', e.target.value)}
+                  onChange={(e) => {
+                    const updatedMenu = [...menu];
+                    updatedMenu[index].name = e.target.value;
+                    setMenu(updatedMenu);
+                  }}
                 />
                 <input
                   type="text"
                   value={item.imageUrl}
-                  onChange={(e) => handleInputChange(index, 'imageUrl', e.target.value)}
+                  onChange={(e) => {
+                    const updatedMenu = [...menu];
+                    updatedMenu[index].imageUrl = e.target.value;
+                    setMenu(updatedMenu);
+                  }}
                 />
                 <input
                   type="text"
                   value={item.price}
-                  onChange={(e) => handleInputChange(index, 'price', e.target.value)}
+                  onChange={(e) => {
+                    const updatedMenu = [...menu];
+                    updatedMenu[index].price = e.target.value;
+                    setMenu(updatedMenu);
+                  }}
                 />
-                <button onClick={() => handleSave(index)}>Save</button>
+                <button onClick={() => setIsEditing(null)}>Save</button>
               </>
             ) : (
               <>
@@ -78,7 +106,7 @@ const Menu = () => {
                 <h3 className="menu-name">{item.name}</h3>
                 <p className="menu-price">{item.price}</p>
                 <button onClick={() => handleAddToCart(item)}>Add to Cart</button>
-                <button onClick={() => handleEdit(index)}>Edit</button>
+                <button onClick={() => setIsEditing(index)}>Edit</button>
               </>
             )}
           </div>
@@ -116,4 +144,5 @@ const Menu = () => {
     </div>
   );
 };
+
 export default Menu;
