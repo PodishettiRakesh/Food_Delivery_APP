@@ -35,7 +35,8 @@ const RestaurantList = () => {
 
   // Handle viewing a restaurant's menu
   const handleViewMenu = (restaurant) => {
-    navigate(`/menu/${restaurant._id}`, { state: { menuData: restaurant.menu } });
+    navigate('/menu', { state: { restaurantId: restaurant._id, menuData: restaurant.menu } });
+
   };
 
   // Handle adding a new restaurant
